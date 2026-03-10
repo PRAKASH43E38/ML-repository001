@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobile Addiction Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+
+  <!-- Background orbs -->
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header>
+      <div class="badge">
+        <span class="pulse"></span>
+        Flask API &middot; Decision Tree &middot; Scikit-learn
+      </div>
+      <h1>Mobile <em>Addiction</em><br/>Predictor</h1>
+      <p>Adjust the sliders &rarr; Click Predict &rarr; Get real ML result</p>
+    </header>
+
+    <!-- MAIN CARD -->
+    <div class="card">
+
+      <!-- API STATUS -->
+      <div class="api-bar">
+        <div class="dot" id="dot"></div>
+        <span id="api-msg">Checking server...</span>
+      </div>
+
+      <div class="sec-label">01 &mdash; Input Features</div>
+
+      <!-- LIVE SUMMARY CHIPS -->
+      <div class="chips">
+        <div class="chip"><span class="ci">🎮</span><span class="cl">Gaming</span><span class="cv" id="c0">0h</span></div>
+        <div class="chip"><span class="ci">📱</span><span class="cl">Social</span><span class="cv" id="c1">0h</span></div>
+        <div class="chip"><span class="ci">😴</span><span class="cl">Sleep</span><span class="cv"  id="c2">7h</span></div>
+        <div class="chip"><span class="ci">🔓</span><span class="cl">Unlocks</span><span class="cv" id="c3">100</span></div>
+        <div class="chip"><span class="ci">🔔</span><span class="cl">Notifs</span><span class="cv"  id="c4">80</span></div>
+      </div>
+
+      <!-- SLIDERS -->
+      <div class="grid">
+
+        <div class="field">
+          <label>Gaming Time <span>hr / day</span></label>
+          <div class="vd" id="v0">0.0</div>
+          <input type="range" id="r0" min="0" max="12" step="0.1" value="0"/>
+          <div class="rl"><span>0h</span><span>12h</span></div>
+        </div>
+
+        <div class="field">
+          <label>Social Media <span>hr / day</span></label>
+          <div class="vd" id="v1">0.0</div>
+          <input type="range" id="r1" min="0" max="12" step="0.1" value="0"/>
+          <div class="rl"><span>0h</span><span>12h</span></div>
+        </div>
+
+        <div class="field">
+          <label>Sleep Hours <span>hr / night</span></label>
+          <div class="vd" id="v2">7.0</div>
+          <input type="range" id="r2" min="2" max="12" step="0.1" value="7"/>
+          <div class="rl"><span>2h</span><span>12h</span></div>
+        </div>
+
+        <div class="field">
+          <label>Daily Unlocks <span>times</span></label>
+          <div class="vd" id="v3">100</div>
+          <input type="range" id="r3" min="10" max="400" step="1" value="100"/>
+          <div class="rl"><span>10</span><span>400</span></div>
+        </div>
+
+        <div class="field full">
+          <label>Notifications / Day <span>count</span></label>
+          <div class="vd" id="v4">80</div>
+          <input type="range" id="r4" min="0" max="300" step="1" value="80"/>
+          <div class="rl"><span>0</span><span>300</span></div>
+        </div>
+
+      </div>
+
+      <!-- PREDICT BUTTON -->
+      <button class="btn-predict" id="btn" onclick="predict()">
+        <span class="btn-inner">
+          <div class="spin" id="spin"></div>
+          <span id="btxt">🔮 &nbsp; Predict Addiction Level</span>
+        </span>
+      </button>
+
+      <!-- ERROR BOX -->
+      <div class="err-box" id="err">
+        ❌ <span id="emsg"></span>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result" id="result">
+        <div class="glow-bg" id="gbg"></div>
+
+        <div class="res-tag">── Prediction Result ──</div>
+        <div class="res-level" id="rlv"></div>
+        <div class="res-sub"   id="rsub"></div>
+
+        <div class="conf-row">
+          <span>Confidence</span>
+          <span id="cpct">—</span>
+        </div>
+        <div class="conf-track">
+          <div class="conf-fill" id="cfill"></div>
+        </div>
+
+        <div class="sec-label">Class Probabilities</div>
+        <div class="prob-grid">
+          <div class="prob-item" id="pi0">
+            <div class="prob-label High">High</div>
+            <div class="prob-val"  id="pv0">—</div>
+          </div>
+          <div class="prob-item" id="pi1">
+            <div class="prob-label Medium">Medium</div>
+            <div class="prob-val"  id="pv1">—</div>
+          </div>
+          <div class="prob-item" id="pi2">
+            <div class="prob-label Low">Low</div>
+            <div class="prob-val"  id="pv2">—</div>
+          </div>
+        </div>
+
+        <div class="advice-box" id="adv"></div>
+
+        <button class="btn-reset" onclick="resetResult()">
+          &#x21BA; &nbsp; Try Again
+        </button>
+      </div>
+
+    </div><!-- /card -->
+
+    <footer>
+      Decision Tree Classifier &middot; max_depth=5 &middot; Gini &middot; 82.5% Accuracy<br/>
+      Features: gaming &middot; social media &middot; sleep &middot; daily unlocks &middot; notifications
+    </footer>
+
+  </div><!-- /wrap -->
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
