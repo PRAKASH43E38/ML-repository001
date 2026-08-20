@@ -7,10 +7,12 @@
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-orange?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)
 ![Accuracy](https://img.shields.io/badge/Accuracy-82.5%25-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)
 
 **A real-time Machine Learning web app that predicts your mobile addiction level based on daily usage behavior.**
 
-[🚀 Live Demo](mobile-addiction-prediction-79cz.vercel.app/) · [📊 Try the Predictor](mobile-addiction-prediction-79cz.vercel.app/) · [🐛 Report Bug](#)
+[🚀 Live Demo](https://mobile-addiction-prediction-79cz.vercel.app/) · [📊 Try the Predictor](https://mobile-addiction-prediction-79cz.vercel.app/) · [🤝 Contributing](CONTRIBUTING.md) · [🐛 Report Bug](../../issues)
 
 </div>
 
@@ -30,6 +32,8 @@
 - [API Reference](#-api-reference)
 - [How It Works](#-how-it-works)
 - [Results & Performance](#-results--performance)
+- [Repository Standards](#-repository-standards)
+- [Contributing](#-contributing)
 - [Future Improvements](#-future-improvements)
 - [License](#-license)
 
@@ -47,7 +51,7 @@ The project combines a **trained Decision Tree classifier** (scikit-learn) with 
 
 ## 🚀 Live Demo
 
-🔗 **[https://ml-repository001.vercel.app/](mobile-addiction-prediction-79cz.vercel.app/)**
+🔗 **[https://mobile-addiction-prediction-79cz.vercel.app/](https://mobile-addiction-prediction-79cz.vercel.app/)**
 
 1. Adjust the 5 sliders based on your daily habits
 2. Click **"Predict Addiction Level"**
@@ -157,6 +161,10 @@ ml-repository001/
 ├── templates/
 │   └── index.html          # Main UI page
 │
+├── .gitignore              # Excludes build targets, .env, model binaries
+├── CODEOWNERS              # Auto-assigns reviewers per directory
+├── CONTRIBUTING.md         # Workflow guidelines and PR expectations
+├── LICENSE                 # MIT License
 ├── vercel.json             # Vercel deployment config
 ├── requirements.txt        # Python dependencies
 └── README.md               # You are here 📍
@@ -199,6 +207,8 @@ numpy
 pandas
 gunicorn
 ```
+
+> ⚠️ **Never commit `.env` files or API keys.** Use environment variables and ensure `.gitignore` covers all secrets before pushing.
 
 ---
 
@@ -279,15 +289,61 @@ The model demonstrates solid performance for a behavioral classification task wi
 
 ---
 
+## 🛡️ Repository Standards
+
+This repository follows professional GitHub collaboration standards:
+
+### Git Workflow
+- **Atomic Commits** — Every commit is focused on a single change (e.g., `Fix prediction endpoint null check`)
+- **Descriptive Messages** — Imperative verbs: `Add`, `Fix`, `Update`, `Remove`
+- **Feature Branches** — All work happens on dedicated branches; never push directly to `main`
+- **Draft PRs** — Open early as Draft to gather feedback before final review
+- **Clean Branches** — Feature branches are deleted after merging
+
+### Branch Rulesets (Settings > Rulesets)
+| Rule | Purpose |
+|---|---|
+| Require PRs before merging | Blocks direct pushes to `main` |
+| Require status checks | CI must pass before merge |
+| Block force pushes | Preserves commit history integrity |
+| Require code owner reviews | Auto-tags reviewers via `CODEOWNERS` |
+| Require signed commits | Cryptographic verification per author |
+
+### Mandatory Files
+| File | Status | Purpose |
+|---|---|---|
+| `README.md` | ✅ Present | Project overview, setup, API docs |
+| `CONTRIBUTING.md` | ✅ Present | PR workflow, code style, branch rules |
+| `.gitignore` | ✅ Present | Excludes `.env`, `*.pkl`, `__pycache__` |
+| `LICENSE` | ✅ Present | MIT License |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR.
+
+**Quick steps:**
+1. Fork this repository
+2. Create a feature branch: `git checkout -b feat/your-feature-name`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push to your fork: `git push origin feat/your-feature-name`
+5. Open a Pull Request — start as **Draft** for early feedback
+
+> See [CONTRIBUTING.md](CONTRIBUTING.md) for full workflow, code style expectations, and PR checklist.
+
+---
+
 ## 🔮 Future Improvements
 
-- [ ] 🔄 Add **Random Forest** / **XGBoost** for better accuracy comparison
+- [ ] 🔄 Add **Random Forest** / **XGBoost** for accuracy comparison
 - [ ] 📊 Include **SHAP explainability** — visualize feature importance per prediction
 - [ ] 🗃️ Expand dataset with real-world survey data
 - [ ] 📱 Build a **mobile app** version (Flutter / React Native)
 - [ ] 🧪 Add **unit tests** for the Flask API
 - [ ] 🔐 Add **rate limiting** and input validation on the API
 - [ ] 📉 Add a **model retraining pipeline** with new data
+- [ ] 🤖 Integrate CI/CD pipeline with GitHub Actions
 
 ---
 
@@ -309,6 +365,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ⭐ **If this project helped you, give it a star!** ⭐
 
-Made with ❤️ | Deployed on Vercel
+Made with ❤️ | Deployed on [Vercel](https://mobile-addiction-prediction-79cz.vercel.app/)
 
 </div>
