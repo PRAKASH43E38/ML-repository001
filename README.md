@@ -10,7 +10,7 @@
 
 **A real-time Machine Learning web app that predicts your mobile addiction level based on daily usage behavior.**
 
-[🚀 Live Demo](https://ml-repository001.vercel.app/) · [📊 Try the Predictor](https://ml-repository001.vercel.app/) · [🐛 Report Bug](#)
+[🚀 Live Demo](mobile-addiction-prediction-79cz.vercel.app/) · [📊 Try the Predictor](mobile-addiction-prediction-79cz.vercel.app/) · [🐛 Report Bug](#)
 
 </div>
 
@@ -47,7 +47,7 @@ The project combines a **trained Decision Tree classifier** (scikit-learn) with 
 
 ## 🚀 Live Demo
 
-🔗 **[https://ml-repository001.vercel.app/](https://ml-repository001.vercel.app/)**
+🔗 **[https://ml-repository001.vercel.app/](mobile-addiction-prediction-79cz.vercel.app/)**
 
 1. Adjust the 5 sliders based on your daily habits
 2. Click **"Predict Addiction Level"**
